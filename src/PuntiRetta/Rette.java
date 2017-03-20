@@ -20,11 +20,10 @@ public class Rette
 		}
 	}
 	
-	public String equazione(Punti p1, Punti p2)
+	public String equazione()
 	{
 		if(verificaVerticale==true)
 		{
-			q=p1.getX();
 			return "Equazione: x= " + this.q;
 		}
 		else
