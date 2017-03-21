@@ -15,7 +15,7 @@ public class Main
 		
 		
 		distanza=punto1.distance(punto2);
-		System.out.println(distanza);
+		System.out.println("Distanza:"+distanza);
 		
 		String equazione=retta.equazione();
 		System.out.println(equazione);

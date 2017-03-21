@@ -32,12 +32,7 @@ public class Punti
 		if(p1.getX()==p2.getX() && p1.getY()==p2.getY())
 		{
 			stato = true;
-		}
-		else
-		{
-			System.out.println("I due punti sono uguali, reinseriscili");
-		}
-		
+		}		
 		return stato;
 	}
 	
