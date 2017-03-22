@@ -42,8 +42,14 @@ public class Rette
 		{
 			if(this.m==0.0)
 				return "y = " + this.q;
+			else if(this.q > 0)
+			{
+				return "y = " + this.m + "x+" + this.q;
+			}
 			else
-				return "y = " + this.m + "x + " + this.q;
+			{
+				return "y = " + this.m + "x" + this.q;
+			}
 		}
 		else 
 		{
@@ -63,8 +69,14 @@ public class Rette
 		{
 			if(this.m==0.0)
 				return "y = " + numero.format(this.q);
+			else if(this.q > 0)
+			{
+				return "y = " + numero.format(this.m) + "x+" + numero.format(this.q);
+			}
 			else
-				return "y = " + numero.format(this.m) + "x + " + numero.format(this.q);
+			{
+				return "y = " + numero.format(this.m) + "x" + numero.format(this.q);
+			}
 		}
 		else 
 		{

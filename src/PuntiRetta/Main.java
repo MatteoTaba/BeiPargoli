@@ -18,7 +18,7 @@ public class Main
 		System.out.println("Equazione retta : "+equazione);
 		
 		String equazioneFormattata=retta.equazioneFormatted(punto1, punto2);
-		System.out.println("Equazione retta : "+equazioneFormattata);
+		System.out.println("Equazione formattata retta : "+equazioneFormattata);
 		
 		boolean appartiene=retta.appartenenza(punto3);
 		if(appartiene)
