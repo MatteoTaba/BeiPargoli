@@ -4,7 +4,7 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		Punti punto1=new Punti(4,6);
+		Punti punto1=new Punti(12,6);
 		Punti punto2=new Punti(5,2);
 		Punti punto3=new Punti(0,2);
 		double distanza;
@@ -16,6 +16,9 @@ public class Main
 		
 		String equazione=retta.equazione(punto1, punto2);
 		System.out.println("Equazione retta : "+equazione);
+		
+		String equazioneFormattata=retta.equazioneFormatted(punto1, punto2);
+		System.out.println("Equazione retta : "+equazioneFormattata);
 		
 		boolean appartiene=retta.appartenenza(punto3);
 		if(appartiene)

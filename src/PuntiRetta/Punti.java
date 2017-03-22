@@ -1,9 +1,12 @@
 package PuntiRetta;
 
+import java.text.DecimalFormat;
+
 public class Punti 
 {
 	private double x;
 	private double y;
+	private final String FORMATO_DECIMALE = "#.##";
 	
 	public Punti(double x, double y) //costruttore che inizializza gli attributi
 	{
@@ -39,5 +42,11 @@ public class Punti
 	public String toString() //traduzione delle coordinate del punto in stringa
 	{
 		return "("+this.x+","+this.y+")";
-	}	
+	}
+	
+	public String toStringFormatted() //traduzione delle coordinate del punto in stringa
+	{
+		DecimalFormat numero = new DecimalFormat(FORMATO_DECIMALE);
+		return "("+numero.format(this.x)+","+numero.format(this.y)+")";
+	}
 }

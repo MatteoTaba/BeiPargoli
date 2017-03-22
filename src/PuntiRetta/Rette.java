@@ -1,11 +1,14 @@
 package PuntiRetta;
 
+import java.text.DecimalFormat;
+
 public class Rette 
 {
 	private double m;
 	private double q;
 	private boolean verticale;
 	private boolean uguali;
+	private final String FORMATO_DECIMALE = "#.##";
 	
 	public Rette(Punti p1, Punti p2) //costruttore con compito di calcolare m e q, verificare la diversità e la verticalità dei punti
 	{
@@ -49,7 +52,26 @@ public class Rette
 		
 	}
 	
-	//TODO metodo equazioneFormatted con DecimalFormatter come parametro
+	public String equazioneFormatted(Punti p1, Punti p2) //elaborazione dell'equazione
+	{
+		DecimalFormat numero = new DecimalFormat(FORMATO_DECIMALE);
+		if(verticale==true)
+		{
+			return "x = " + numero.format(this.q);
+		}
+		else if(verticale==false && uguali==false)
+		{
+			if(this.m==0.0)
+				return "y = " + numero.format(this.q);
+			else
+				return "y = " + numero.format(this.m) + "x + " + numero.format(this.q);
+		}
+		else 
+		{
+			return "Non posso calcolare l'equazione";
+		}
+		
+	}
 	
 	public boolean appartenenza(Punti p3) //verifica se il terzo punto appartiene alla retta
 	{
