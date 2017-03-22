@@ -25,37 +25,42 @@ public class Rette
 	{
 		if(verticale==true)
 		{
-			return "Equazione: x= " + this.q;
+			return "x = " + this.q;
 		}
 		else
 		{
-			return "Equazione: y= " + this.m + "x + " + this.q;
+			if(this.m==0.0)
+				return "y = " + this.q;
+			else
+				return "y = " + this.m + "x + " + this.q;
 		}
 		
 	}
 	
-	public String appartenenza(Punti p3)
+	//TODO metodo equazioneFormatted con DecimalFormatter come parametro
+	
+	public boolean appartenenza(Punti p3)
 	{
 		if(verticale==true)
 		{
 			if(p3.getX()==this.q)
 			{
-				return "Il punto è allineato con gli altri";
+				return true;
 			}
 			else
 			{
-				return "Il punto non è allineato con gli altri";
+				return false;
 			}
 		}
 		else
 		{
 			if(p3.getY()==(p3.getX()*this.m + this.q))
 			{
-				return "Il punto ("+ p3.getX()+","+p3.getY()+") è allineato con gli altri";
+				return true;
 			}
 			else 
 			{
-				return "Il punto ("+ p3.getX()+","+p3.getY()+") non è allineato con gli altri";
+				return false;
 			}
 		}
 	}

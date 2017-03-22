@@ -26,7 +26,7 @@ public class Punti
 		return  Math.sqrt (Math.pow ( (x-punto2.getX() ), 2) + Math.pow( (y-punto2.getY() ), 2) );
 	}
 	
-	public boolean uguali(Punti p1, Punti p2)
+	public boolean equals(Punti p1, Punti p2)
 	{
 		boolean stato = false;
 		if(p1.getX()==p2.getX() && p1.getY()==p2.getY())
@@ -36,6 +36,9 @@ public class Punti
 		return stato;
 	}
 	
+	public String toString(){
+		return "("+this.x+","+this.y+")";
+	}
 		
 	
 }

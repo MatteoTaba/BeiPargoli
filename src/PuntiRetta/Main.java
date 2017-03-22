@@ -4,9 +4,9 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		Punti punto1=new Punti(2,2);
-		Punti punto2=new Punti(3,3);
-		Punti punto3=new Punti(0,0);
+		Punti punto1=new Punti(1,2);
+		Punti punto2=new Punti(2,3);
+		Punti punto3=new Punti(0,2);
 		
 		double distanza;
 		
@@ -15,13 +15,16 @@ public class Main
 		
 		
 		distanza=punto1.distance(punto2);
-		System.out.println("Distanza:"+distanza);
+		System.out.println("Distanza tra "+punto1.toString()+" e "+punto2.toString()+" = "+distanza);
 		
 		String equazione=retta.equazione();
-		System.out.println(equazione);
+		System.out.println("Equazione retta : "+equazione);
 		
-		String appartiene=retta.appartenenza(punto3);
-		System.out.println(appartiene);
-		
+		boolean appartiene=retta.appartenenza(punto3);
+		if(appartiene)
+			System.out.println("Punto "+punto3.toString()+" appartiene alla retta : "+equazione);
+		else
+			System.out.println("Punto "+punto3.toString()+" non appartiene alla retta : "+equazione);
+
 	}
 }
