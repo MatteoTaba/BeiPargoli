@@ -7,7 +7,6 @@ public class Rette
 	private double m;
 	private double q;
 	private boolean verticale;
-	private boolean uguali;
 	private final String FORMATO_DECIMALE = "#.##";
 	
 	public Rette(Punti p1, Punti p2) //costruttore con compito di calcolare m e q, verificare la diversità e la verticalità dei punti
@@ -28,17 +27,17 @@ public class Rette
 		}
 		else
 		{
-			uguali=true;
+			throw new IllegalArgumentException("Punti Uguali");//I due punti coincidono: la retta non pu� essere definita
 		}
 	}
 	
-	public String equazione(Punti p1, Punti p2) //elaborazione dell'equazione
+	public String equazione() //elaborazione dell'equazione
 	{
 		if(verticale==true)
 		{
 			return "x = " + this.q;
 		}
-		else if(verticale==false && uguali==false)
+		else
 		{
 			if(this.m==0.0)
 				return "y = " + this.q;
@@ -50,22 +49,17 @@ public class Rette
 			{
 				return "y = " + this.m + "x" + this.q;
 			}
-		}
-		else 
-		{
-			return "Non posso calcolare l'equazione";
-		}
-		
+		}		
 	}
 	
-	public String equazioneFormatted(Punti p1, Punti p2) //elaborazione dell'equazione
+	public String equazioneFormatted() //elaborazione dell'equazione
 	{
 		DecimalFormat numero = new DecimalFormat(FORMATO_DECIMALE);
 		if(verticale==true)
 		{
 			return "x = " + numero.format(this.q);
 		}
-		else if(verticale==false && uguali==false)
+		else
 		{
 			if(this.m==0.0)
 				return "y = " + numero.format(this.q);
@@ -77,12 +71,7 @@ public class Rette
 			{
 				return "y = " + numero.format(this.m) + "x" + numero.format(this.q);
 			}
-		}
-		else 
-		{
-			return "Non posso calcolare l'equazione";
-		}
-		
+		}		
 	}
 	
 	public boolean appartenenza(Punti p3) //verifica se il terzo punto appartiene alla retta
