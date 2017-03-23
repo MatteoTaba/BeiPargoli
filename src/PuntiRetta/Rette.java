@@ -6,10 +6,10 @@ public class Rette
 {
 	private double m;
 	private double q;
-	private boolean verticale;
+	private boolean verticale;//Indica se la retta � verticale o meno
 	private final String FORMATO_DECIMALE = "#.##";
 	
-	public Rette(Punti p1, Punti p2) //costruttore con compito di calcolare m e q, verificare la diversità e la verticalità dei punti
+	public Rette(Punti p1, Punti p2) //costruttore della retta dati i due punti (a patto che non coincidano)
 	{
 		if(p1.equals(p2)==false)
 		{
@@ -31,7 +31,7 @@ public class Rette
 		}
 	}
 	
-	public String equazione() //elaborazione dell'equazione
+	public String equazione() //restituisce l'equazione della retta
 	{
 		if(verticale==true)
 		{
@@ -52,7 +52,7 @@ public class Rette
 		}		
 	}
 	
-	public String equazioneFormatted() //elaborazione dell'equazione
+	public String equazioneFormatted() //restituisce l'equazione della retta con due cifre decimali
 	{
 		DecimalFormat numero = new DecimalFormat(FORMATO_DECIMALE);
 		if(verticale==true)
@@ -74,7 +74,7 @@ public class Rette
 		}		
 	}
 	
-	public boolean appartenenza(Punti p3) //verifica se il terzo punto appartiene alla retta
+	public boolean appartenenza(Punti p3) //verifica se il punto p3 ricevuto come parametro appartiene alla retta
 	{
 		if(verticale==true)
 		{
