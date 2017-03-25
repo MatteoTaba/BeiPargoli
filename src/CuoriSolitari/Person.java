@@ -35,7 +35,7 @@ public class Person
 	}
 	public boolean affinityCalculation(Person subject2)
 	{
-		if(this.gender != subject2.gender && this.age-subject2.age<=THRESHOLD && this.age-subject2.age>=THRESHOLD)
+		if(this.gender != subject2.gender && this.age-subject2.age<=THRESHOLD && this.age-subject2.age>=-THRESHOLD)
 		{
 			return true;
 		}

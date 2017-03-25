@@ -4,7 +4,7 @@ public class Main
 {
 	public static void Saluto()
 	{
-		System.out.println("Ciao! Questo programma calcola l'affinità tra due persone da te scelte.");
+		System.out.println("Ciao! Questo programma calcola l'affinita' tra due persone da te scelte.");
 	}
 	
 	public static Person acquirePerson()
@@ -14,14 +14,11 @@ public class Main
 		int age;
 		char gender;
 		
-		System.out.println("Inserisci il nome: ");
-		name=Utility.acquireString();
+		name=Utility.acquireStringNoEmpty("Inserisci il nome : ");
+
+		age=Utility.acquireAge("Inserisci l'eta': ", true);
 		
-		System.out.println("Inserisci l'età: ");
-		age=Utility.acquireInt();
-		
-		System.out.println("Inserisci il sesso [M/F]: ");
-		gender=Utility.acquireChar();
+		gender=Utility.acquireGender("Inserisci il sesso [M/F]: ");
 		
 		p=new Person(name, age, gender);
 		
@@ -44,11 +41,6 @@ public class Main
 		{
 			System.out.println("I soggetti "+subject.getName()+" e "+subject1.getName()+" risultano non essere affini");
 		}
-
-
-	
-		
-		
 		
 	}
 }
