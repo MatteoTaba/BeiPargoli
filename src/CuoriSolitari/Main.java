@@ -1,4 +1,4 @@
-
+package CuoriSolitari;
 
 public class Main 
 {

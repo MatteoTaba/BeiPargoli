@@ -1,3 +1,4 @@
+package CuoriSolitari;
 
 public class Person 
 {
