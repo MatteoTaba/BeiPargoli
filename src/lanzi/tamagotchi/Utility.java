@@ -10,7 +10,9 @@ public class Utility
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
-		stringa=keyboard.next();
+		do{
+			stringa=keyboard.next();
+		}while(stringa.trim().equals(""));
 		
 		return stringa;
 	}
@@ -19,20 +21,29 @@ public class Utility
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
-		System.out.print(inputText);
+		do{
+			System.out.print(inputText);
+			stringa=keyboard.next();
+		}while(stringa.trim().equals(""));
+		
+		return stringa;
+	}
+	
+	public static String acquireStringAlsoEmpty()
+	{
+		String stringa;
+		keyboard.useDelimiter(NEWLINE);
 		stringa=keyboard.next();
 		
 		return stringa;
 	}
 	
-	public static String acquireStringNoEmpty(String inputText)
+	public static String acquireStringAlsoEmpty(String inputText)
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
-		do{
-			System.out.print(inputText);
-			stringa=keyboard.next();
-		}while(stringa.trim().equals(""));
+		System.out.print(inputText);
+		stringa=keyboard.next();
 		
 		return stringa;
 	}
