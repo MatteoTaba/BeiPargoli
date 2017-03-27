@@ -18,53 +18,52 @@ public class Tamagotchi {
 	private static final int SOGLIA_AFFETTO=30;
 	private static final int SOGLIA_INF_CIBO=30;
 	private static final int SOGLIA_SUP_CIBO=90;
+	private static final int INCREMENTO_AFFETTO=1;
 	
 	
-	public Tamagotchi(String nome){
+	public Tamagotchi(String nome, int salute, int affetto, int cibo){
 		this.nome=nome;
-		this.salute = DEFAULT_SALUTE;
-		this.affetto = DEFAULT_AFFETTO;
-		this.cibo = DEFAULT_CIBO;
-		this.vivo = true;
+		this.salute = salute;
+		this.affetto = affetto;
+		this.cibo = cibo;
+		this.vivo = isDead();
 	}
 	
-	/*
-	 * Restituisce il numero di carezze effettuate
-	 */
 	public int carezza(int numeroCarezze){
-		int carezzeEffettive;
-		
-		if(vivo && affetto!=MAX_AFFETTO){
-			int caloCibo;
-			caloCibo = numeroCarezze/2;
-			if(cibo-caloCibo <= 0){
-				this.cibo=0;
-				carezzeEffettive=0;
+		if(vivo && affetto != MAX_AFFETTO){
+			int affettoParziale;
+			float ciboParziale;
+			float ciboFloat = (float)cibo;
+			
+			int i;
+			for(i=numeroCarezze;i>0;i--){
+				affettoParziale=affetto;
+				affettoParziale++;
+				ciboParziale=ciboFloat;
+				ciboParziale-=0.50;
+				
+				if(affettoParziale > MAX_AFFETTO) break;
+				if(ciboParziale < 0) break;
+				affetto=affettoParziale;
+				ciboFloat = ciboParziale;
 			}
-			else if(affetto > MAX_AFFETTO){
-				carezzeEffettive=MAX_AFFETTO-affetto;
-				affetto=MAX_AFFETTO;
-				cibo-=caloCibo;
-			}
-			else{
-				carezzeEffettive=numeroCarezze;
-				cibo-=caloCibo;
-			}
+			cibo=(int)ciboFloat;
+			numeroCarezze-=i;
 		}
 		else
-			carezzeEffettive=0;
+			numeroCarezze=0;
 		isDead();
-		return carezzeEffettive;
+		return numeroCarezze;
 	}
 	
 	public boolean isDead(){
 		if(vivo){
 			if(salute==0||affetto==0||cibo==0) this.vivo=false;
 		}
-		return vivo;
+		return !vivo;
 	}
 	
-	public int biscotto(int numeroBiscotti){
+	/*public int biscotto(int numeroBiscotti){
 		int biscottiEffettivi;
 		
 			if(cibo != MAX_CIBO && vivo){
@@ -92,6 +91,32 @@ public class Tamagotchi {
 				biscottiEffettivi=0;
 			isDead();
 			return biscottiEffettivi;
+	}*/
+	public int biscotto(int numeroBiscotti){//TODO Sistemare come da consegna
+		if(vivo && cibo != MAX_CIBO){
+			int ciboParziale;
+			float affettoParziale;
+			float affettoFloat = (float)affetto;
+			
+			int i;
+			for(i=numeroBiscotti;i>0;i--){
+				ciboParziale=cibo;
+				ciboParziale++;
+				affettoParziale=affettoFloat;
+				ciboParziale-=0.25;
+				
+				if(affettoParziale > MAX_AFFETTO) break;
+				if(ciboParziale < 0) break;
+				cibo=ciboParziale;
+				affettoFloat=affettoParziale;
+			}
+			affetto=(int)affettoFloat;
+			numeroBiscotti-=i;
+		}
+		else
+			numeroBiscotti=0;
+		isDead();
+		return numeroBiscotti;
 	}
 	
 	public boolean isHappy(){
@@ -101,5 +126,25 @@ public class Tamagotchi {
 		else
 			happy=true;
 		return happy;
+	}
+	
+	public int getAffetto() {
+		return affetto;
+	}
+	
+	public int getCibo() {
+		return cibo;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public int getSalute() {
+		return salute;
+	}
+	
+	public String toString(){
+		return nome+ "-Salute: "+salute+"; Affetto: "+affetto+"; Cibo: "+cibo;
 	}
 }
