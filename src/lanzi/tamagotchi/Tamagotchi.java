@@ -42,6 +42,16 @@ public class Tamagotchi{
 		return name;
 	}
 	
+	public String getStats(){
+		if(!this.dead())
+			if(this.unhappy())
+				return "Grado sazieta' : "+this.fullGrade+"\nGrado soddisfazione : "+this.satisfactionGrade+"\n"+this.name+" non e' contento";
+			else
+				return "Grado sazieta' : "+this.fullGrade+"\nGrado soddisfazione : "+this.satisfactionGrade+"\n"+this.name+" e' contento";
+		else
+			return this.name+" e' morto.";
+	}
+	
 	public void eatBiscuit(int quantity){
 		for(int i=0;i<quantity;i++){
 			fullGrade=fullGrade+fullGrade*fullPerBiscuitPercent/100;
