@@ -1,4 +1,4 @@
-package CuoriSolitari;
+package lanzi.tamagotchi;
 import java.util.*;
 
 public class Utility 
@@ -10,6 +10,16 @@ public class Utility
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
+		stringa=keyboard.next();
+		
+		return stringa;
+	}
+	
+	public static String acquireString(String inputText)
+	{
+		String stringa;
+		keyboard.useDelimiter(NEWLINE);
+		System.out.print(inputText);
 		stringa=keyboard.next();
 		
 		return stringa;
@@ -60,6 +70,23 @@ public class Utility
 		intero=keyboard.nextInt();
 		
 		return intero;
+	}
+	
+	public static float acquireFloat()
+	{
+		float floatNumber;
+		floatNumber=keyboard.nextFloat();
+		
+		return floatNumber;
+	}
+	
+	public static float acquireFloat(String inputText)
+	{
+		float floatNumber;
+		System.out.print(inputText);
+		floatNumber=keyboard.nextFloat();
+		
+		return floatNumber;
 	}
 	
 	//Specified inputs

@@ -13,6 +13,8 @@ public class Main
 		String name;
 		int age;
 		char gender;
+		Zodiac mySign;
+		Zodiac addictedSign;
 		
 		name=Utility.acquireStringNoEmpty("Inserisci il nome : ");
 
@@ -20,7 +22,11 @@ public class Main
 		
 		gender=Utility.acquireGender("Inserisci il sesso [M/F]: ");
 		
-		p=new Person(name, age, gender);
+		mySign=Zodiac.acquireZodiacSign("Inserisci il tuo segno zodiacale: ");
+		
+		addictedSign=Zodiac.acquireZodiacSign("Inserisci il segno del partner ideale: ");
+		
+		p=new Person(name, age, gender, mySign, addictedSign);
 		
 		return p;
 		

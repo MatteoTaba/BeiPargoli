@@ -5,18 +5,23 @@ public class Person
 	private String name;
 	private int age;
 	private char gender;
-	private static final char MALE='M';
+	private Zodiac zodiacSign;
+	private Zodiac addictedSign;
+/*	private static final char MALE='M';
 	private static final char FEMALE='F';
+*/
 	private static final short THRESHOLD=5;
 	
 	public Person(){
 	}
 	
-	public Person(String name, int age, char gender)
+	public Person(String name, int age, char gender, Zodiac zodiacSign, Zodiac addictedSign)
 	{
 		this.name=name;
 		this.age=age;
 		this.gender=gender;
+		this.zodiacSign=zodiacSign;
+		this.addictedSign=addictedSign;
 	}
 	
 	public String getName()
@@ -35,7 +40,7 @@ public class Person
 	}
 	public boolean affinityCalculation(Person subject2)
 	{
-		if(this.gender != subject2.gender && this.age-subject2.age<=THRESHOLD && this.age-subject2.age>=-THRESHOLD)
+		if(this.gender != subject2.gender && this.age-subject2.age<=THRESHOLD && this.age-subject2.age>=-THRESHOLD && this.zodiacSign==subject2.addictedSign)
 		{
 			return true;
 		}
