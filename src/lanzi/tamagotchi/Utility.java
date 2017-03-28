@@ -83,6 +83,27 @@ public class Utility
 		return intero;
 	}
 	
+	public static int acquireIntPositive()
+	{
+		int interopos;
+		do{
+			interopos=keyboard.nextInt();
+		}while(interopos<=0);
+		
+		return interopos;
+	}
+	
+	public static int acquireIntPositive(String inputText)
+	{
+		int interopos;
+		do{
+			System.out.print(inputText);
+			interopos=keyboard.nextInt();
+		}while(interopos<=0);
+		
+		return interopos;
+	}
+	
 	public static float acquireFloat()
 	{
 		float floatNumber;

@@ -13,13 +13,19 @@ public class Main{
 			System.out.println(tam.getStats());
 			String in;
 			do{
-				in=Utility.acquireStringNoEmpty("Inserisci comando [Carezze/Biscotti] : ").trim();
-				int quantity=(int)(Math.random()*10);
-				if(in.equalsIgnoreCase("carezze"))
-					tam.receiveCaress(quantity);
-				else if(in.equalsIgnoreCase("biscotti"))
-					tam.eatBiscuit(quantity);
+				in=Utility.acquireString("Inserisci comando [Carezze/Biscotti] : ").trim();
 			}while(!in.equalsIgnoreCase("carezze") && !in.equalsIgnoreCase("biscotti"));
+			int quantity=(int)(Math.random()*10);
+			if(in.equalsIgnoreCase("carezze"))
+			{
+				tam.receiveCaress(quantity);
+				System.out.println(tam.getName()+" riceve "+quantity+" carezze.");
+			}
+			else if(in.equalsIgnoreCase("biscotti"))
+			{
+				tam.eatBiscuit(quantity);
+				System.out.println(tam.getName()+" mangia "+quantity+" biscotti.");
+			}
 		}
 		System.out.println(tam.getName()+" e' morto.");
 	}
@@ -29,9 +35,9 @@ public class Main{
 	}
 	
 	private static Tamagotchi createTamagotchi(){
-		float fullGrade=Utility.acquireFloat("Inserisci sazieta' iniziale : ");
-		float satisfactionGrade=Utility.acquireFloat("Inserisci soddisfazione iniziale : ");
-		String name=Utility.acquireString("Inserisci il nome (opzionale) : ");
+		int fullGrade=Utility.acquireIntPositive("Inserisci sazieta' iniziale : ");
+		int satisfactionGrade=Utility.acquireIntPositive("Inserisci soddisfazione iniziale : ");
+		String name=Utility.acquireStringAlsoEmpty("Inserisci il nome (opzionale) : ");
 		Tamagotchi tam;
 		if(name.trim().equals(""))
 			tam=new Tamagotchi(fullGrade, satisfactionGrade);
