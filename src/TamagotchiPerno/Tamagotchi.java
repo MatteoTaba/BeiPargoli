@@ -2,34 +2,28 @@ package TamagotchiPerno;
 
 public class Tamagotchi {
 	private String nome;
-	private int salute;
 	private int affetto;
 	private int cibo;
 	private boolean vivo;
 	private boolean happy;
 	
-	private static final int MAX_SALUTE = 100;
 	private static final int MAX_AFFETTO = 100;
 	private static final int MAX_CIBO = 100;
-	private static final int DEFAULT_SALUTE = 20;
-	private static final int DEFAULT_AFFETTO = 20;
-	private static final int DEFAULT_CIBO = 20;
-	private static final double PERCENTUALE_BISCOTTI=0.1;
-	private static final int SOGLIA_AFFETTO=30;
+	private static final float PERCENTUALE_BISCOTTI=(float)0.1;
+	private static final int SOGLIA_INF_AFFETTO=30;
 	private static final int SOGLIA_INF_CIBO=30;
 	private static final int SOGLIA_SUP_CIBO=90;
-	private static final int INCREMENTO_AFFETTO=1;
 	
 	
-	public Tamagotchi(String nome, int salute, int affetto, int cibo){
+	public Tamagotchi(String nome, int affetto, int cibo){
 		this.nome=nome;
-		this.salute = salute;
 		this.affetto = affetto;
 		this.cibo = cibo;
-		this.vivo = isDead();
+		this.vivo = true;
+		isAlive();
 	}
 	
-	public int carezza(int numeroCarezze){
+	public int carezza(int numeroCarezze){//TODO Inserire random
 		if(vivo && affetto != MAX_AFFETTO){
 			int affettoParziale;
 			float ciboParziale;
@@ -52,75 +46,50 @@ public class Tamagotchi {
 		}
 		else
 			numeroCarezze=0;
-		isDead();
+		isAlive();
+		isHappy();
 		return numeroCarezze;
 	}
 	
-	public boolean isDead(){
-		if(vivo){
-			if(salute==0||affetto==0||cibo==0) this.vivo=false;
-		}
-		return !vivo;
-	}
-	
-	/*public int biscotto(int numeroBiscotti){
-		int biscottiEffettivi;
-		
-			if(cibo != MAX_CIBO && vivo){
-				double ciboAttuale = cibo;
-				double aumentoCibo;
-				int caloAffetto;
-				
-				for(int k=numeroBiscotti;k>0;k--){
-					aumentoCibo=ciboAttuale*PERCENTUALE_BISCOTTI;
-					if((ciboAttuale+aumentoCibo)>MAX_CIBO)
-						break;
-					else
-						ciboAttuale+=aumentoCibo;						
-				}
-				biscottiEffettivi=(int)ciboAttuale-cibo;
-				this.cibo=(int)ciboAttuale;
-				
-				caloAffetto=biscottiEffettivi/4;
-				if(affetto-caloAffetto < 0){//Affetto negativo
-					affetto=0;
-					biscottiEffettivi=0;
-				}
-			}
-			else
-				biscottiEffettivi=0;
-			isDead();
-			return biscottiEffettivi;
-	}*/
-	public int biscotto(int numeroBiscotti){//TODO Sistemare come da consegna
+	public int biscotto(int numeroBiscotti){//TODO Inserire random
 		if(vivo && cibo != MAX_CIBO){
-			int ciboParziale;
+			float ciboParziale;
 			float affettoParziale;
 			float affettoFloat = (float)affetto;
-			
+			float ciboFloat = (float)cibo;
 			int i;
+			
 			for(i=numeroBiscotti;i>0;i--){
-				ciboParziale=cibo;
-				ciboParziale++;
+				ciboParziale=ciboFloat;
+				ciboParziale+=ciboParziale*PERCENTUALE_BISCOTTI;
 				affettoParziale=affettoFloat;
-				ciboParziale-=0.25;
+				affettoParziale-=0.25;
 				
-				if(affettoParziale > MAX_AFFETTO) break;
-				if(ciboParziale < 0) break;
-				cibo=ciboParziale;
+				if(ciboParziale > MAX_CIBO) break;
+				if(affettoParziale < 0) break;
+				ciboFloat=ciboParziale;
 				affettoFloat=affettoParziale;
 			}
 			affetto=(int)affettoFloat;
+			cibo=(int)ciboFloat;
 			numeroBiscotti-=i;
 		}
 		else
 			numeroBiscotti=0;
-		isDead();
+		isAlive();
+		isHappy();
 		return numeroBiscotti;
 	}
 	
+	public boolean isAlive(){
+		if(vivo){
+			if(affetto==0||cibo==0||cibo==MAX_CIBO) this.vivo=false;
+		}
+		return vivo;
+	}
+		
 	public boolean isHappy(){
-		if(affetto<SOGLIA_AFFETTO||SOGLIA_INF_CIBO < cibo || cibo < SOGLIA_SUP_CIBO){
+		if(affetto<SOGLIA_INF_AFFETTO || cibo < SOGLIA_INF_CIBO || SOGLIA_SUP_CIBO < cibo){
 			happy=false;
 		}
 		else
@@ -140,11 +109,17 @@ public class Tamagotchi {
 		return nome;
 	}
 	
-	public int getSalute() {
-		return salute;
-	}
-	
 	public String toString(){
-		return nome+ "-Salute: "+salute+"; Affetto: "+affetto+"; Cibo: "+cibo;
+		String happy;
+		String vivo;
+		if(this.happy)
+			happy="felice";
+		else
+			happy="triste";
+		if(this.vivo)
+			vivo="vivo";
+		else
+			vivo="morto";
+		return nome+ "- Affetto: "+affetto+"; Cibo: "+cibo+"; Stato: "+happy+", "+vivo;
 	}
 }
