@@ -1,4 +1,4 @@
-package TamagotchiPerno;
+package perno.tamagotchi;
 
 import java.util.Random;
 
