@@ -1,10 +1,16 @@
 package TamagotchiPerno;
 
-import java.util.Random;
 import myUtil.MyInput;
 
+/*
+ * Contiene il metodo main.
+ */
 public class Main {
+	private static final String SALUTO="Benvenuto!";
 	
+	/*
+	 * Richiede la creazione di un tamagotchi e in seguito permette di interagire con esso.
+	 */
 	public static void main(String[] args) {
 		int comando;
 		
@@ -37,32 +43,36 @@ public class Main {
 		System.exit(0);
 	}
 	
+	/*
+	 * Saluto iniziale all'utente.
+	 */
 	public static void saluta(){
-		System.out.println("Ciao");
+		System.out.println(SALUTO);
 	}
 	
+	/*
+	 * Accarezza il tamagotchi selezionato.
+	 */
 	private static void accarezza(Tamagotchi t){
-		int numeroCarezze;
 		int carezzeEffettive;
-		String useRandom;
 		
-		do{
-			useRandom=MyInput.acquireString("Random? (yes/no)");
-		}while(!useRandom.equals("yes") && !useRandom.equals("no"));
-		
-		if(useRandom.equals("no")){
-			do{
-			numeroCarezze=MyInput.acquireIntPositive("Quante carezze?");
-			}while(numeroCarezze <= 0);
-		}
-		else{
-			numeroCarezze=randomInt(0,100);
-		}
-		
-		carezzeEffettive=t.carezza(numeroCarezze);
-		System.out.println("Carezze effettive:"+ carezzeEffettive+" |" + t.toString());
+		carezzeEffettive=t.carezza();
+		System.out.println("Carezze effettive:"+ carezzeEffettive+" | " + t.toString());
 	}
 	
+	/*
+	 * Da un biscotto al tamagotchi selezionato.
+	 */
+	private static void daiBiscotto(Tamagotchi t){
+		int biscottiEffettivi;
+		
+		biscottiEffettivi=t.biscotto();
+		System.out.println("Biscotti effettivi:"+ biscottiEffettivi+" | " + t.toString());
+	}
+	
+	/*
+	 * Crea un nuovo tamagotchi.
+	 */
 	private static Tamagotchi creaTamagotchi(){
 		Tamagotchi t;
 		String nome;
@@ -81,35 +91,5 @@ public class Main {
 		
 		t = new Tamagotchi(nome,affetto,cibo);
 		return t;
-	}
-	
-	private static void daiBiscotto(Tamagotchi t){
-		int numeroBiscotti;
-		int biscottiEffettivi;
-		String useRandom;
-		
-		do{
-			useRandom=MyInput.acquireString("Random? (yes/no)");
-		}while(!useRandom.equals("yes") && !useRandom.equals("no"));
-		
-		if(useRandom.equals("no")){
-			do{
-				System.out.println("Quanti biscotti?");
-				numeroBiscotti=MyInput.acquireIntPositive("Quanti biscotti?");
-			}while(numeroBiscotti <= 0);
-		}
-		else{
-			numeroBiscotti=randomInt(0,100);
-		}
-		
-		t.biscotto(numeroBiscotti);
-		biscottiEffettivi=t.biscotto(numeroBiscotti);
-		System.out.println("Carezze effettive:"+ biscottiEffettivi+" |" + t.toString());
-	}
-	
-	private static int randomInt(int from, int to){//TODO Rimuovere random
-		Random generator = new Random();
-		int randomNumber = from + generator.nextInt(to+1);
-		return randomNumber;
 	}
 }

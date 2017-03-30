@@ -1,5 +1,10 @@
 package TamagotchiPerno;
 
+import java.util.Random;
+
+/*
+ * Rappresenta un tamagotchi.
+ */
 public class Tamagotchi {
 	private String nome;
 	private int affetto;
@@ -14,7 +19,9 @@ public class Tamagotchi {
 	private static final int SOGLIA_INF_CIBO=30;
 	private static final int SOGLIA_SUP_CIBO=90;
 	
-	
+	/*
+	 * Costruttore che istanzia un nuovo tamagotchi dati nome, affetto e cibo.
+	 */
 	public Tamagotchi(String nome, int affetto, int cibo){
 		this.nome=nome;
 		this.affetto = affetto;
@@ -23,13 +30,22 @@ public class Tamagotchi {
 		isAlive();
 	}
 	
-	public int carezza(int numeroCarezze){//TODO Inserire random
+	/*
+	 * Metodo che va a incrementare l'affetto di 1 per ogni carezza e decrementare il cibo di metà delle carezze ricevute.
+	 * Il numero di carezze è casuale.
+	 * Non vengono effettuate ulteriori carezze se il tamagotchi è morto/muore o ha/raggiunge affetto massimo.
+	 * TODO implementare riduzione aumento affetto per un numero elevato di carezze
+	 */
+	public int carezza(){
+		Random generator = new Random();
+		int numeroCarezze = generator.nextInt(100);
+		
 		if(vivo && affetto != MAX_AFFETTO){
 			int affettoParziale;
 			float ciboParziale;
 			float ciboFloat = (float)cibo;
-			
 			int i;
+			
 			for(i=numeroCarezze;i>0;i--){
 				affettoParziale=affetto;
 				affettoParziale++;
@@ -46,12 +62,22 @@ public class Tamagotchi {
 		}
 		else
 			numeroCarezze=0;
+		
 		isAlive();
 		isHappy();
 		return numeroCarezze;
 	}
 	
-	public int biscotto(int numeroBiscotti){//TODO Inserire random
+	/*
+	 * Metodo che va a incrementare il cibo di 1 per ogni biscotto e decrementare l'affetto di 1/4 dei biscotti ricevuti.
+	 * Il numero di biscotti è casuale.
+	 * Non vengono dati ulteriori biscotti se il tamagotchi è morto/muore o ha/raggiunge cibo massimo.
+	 * TODO implementare riduzione aumento cibo per un numero elevato di biscotti
+	 */
+	public int biscotto(){
+		Random generator = new Random();
+		int numeroBiscotti = generator.nextInt(100);
+		
 		if(vivo && cibo != MAX_CIBO){
 			float ciboParziale;
 			float affettoParziale;
@@ -70,24 +96,32 @@ public class Tamagotchi {
 				ciboFloat=ciboParziale;
 				affettoFloat=affettoParziale;
 			}
+			
 			affetto=(int)affettoFloat;
 			cibo=(int)ciboFloat;
 			numeroBiscotti-=i;
 		}
 		else
 			numeroBiscotti=0;
+		
 		isAlive();
 		isHappy();
 		return numeroBiscotti;
 	}
 	
+	/*
+	 * Controlla se il tamagotchi è vivo.
+	 */
 	public boolean isAlive(){
 		if(vivo){
 			if(affetto==0||cibo==0||cibo==MAX_CIBO) this.vivo=false;
 		}
 		return vivo;
 	}
-		
+	
+	/*
+	 * Controlla se il tamagotchi è felice
+	 */
 	public boolean isHappy(){
 		if(affetto<SOGLIA_INF_AFFETTO || cibo < SOGLIA_INF_CIBO || SOGLIA_SUP_CIBO < cibo){
 			happy=false;
@@ -108,7 +142,7 @@ public class Tamagotchi {
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public String toString(){
 		String happy;
 		String vivo;

@@ -1,7 +1,5 @@
 package TamagotchiPerno;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class TamagotchiTest {
@@ -21,16 +19,13 @@ public class TamagotchiTest {
 	@Test
 	public void testCarezza() {
 		String nome="prova";
-		int affetto=50;
+		int affetto=20;
 		int cibo=40;
-		float ciboFloat=cibo;
+		
 		Tamagotchi t = new Tamagotchi(nome,affetto,cibo);
-		t.carezza(5);
-		affetto+=5;
-		ciboFloat -= 5*0.5;
-		cibo = (int)ciboFloat;
-		assert t.getAffetto() == affetto;
-		assert t.getCibo() == cibo;
+		do{
+			t.carezza();
+		}while(t.isAlive());
 	}
 
 	@Test
@@ -48,14 +43,15 @@ public class TamagotchiTest {
 	}
 
 	@Test
-	public void testBiscotto() {
+	public void testBiscotto() {//TODO controllare perché non funziona
 		String nome="prova";
 		float affetto=50;
-		float cibo=40;
+		float cibo=5;
 		Tamagotchi t = new Tamagotchi(nome,(int)affetto,(int)cibo);
-		t.biscotto(5);
-
-		fail("Not yet implemented");
+		
+		do{
+			t.biscotto();
+		}while(t.isAlive());
 	}
 
 	@Test
