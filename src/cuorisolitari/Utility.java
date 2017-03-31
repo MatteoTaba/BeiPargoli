@@ -1,4 +1,4 @@
-package CuoriSolitari;
+package cuorisolitari;
 import java.util.*;
 
 public class Utility 
