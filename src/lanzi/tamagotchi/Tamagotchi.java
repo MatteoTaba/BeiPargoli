@@ -63,6 +63,8 @@ public class Tamagotchi{
 			satisfactionGrade=Math.round(satisfactionGrade+SATISFACTIONPERCARESS);
 			fullGrade=Math.round(fullGrade-FULLPERCARESSLESS);
 		}
+		if(satisfactionGrade>100)
+			satisfactionGrade=100;
 	}
 	
 	public boolean dead(){
