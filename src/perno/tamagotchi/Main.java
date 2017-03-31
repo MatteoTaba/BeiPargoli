@@ -1,6 +1,6 @@
 package perno.tamagotchi;
 
-import myUtil.MyInput;
+import myutil.MyInput;
 
 /*
  * Contiene il metodo main.
