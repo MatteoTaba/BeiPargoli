@@ -1,4 +1,4 @@
-package CuoriSolitari;
+package cuorisolitari;
 
 public class Person 
 {
@@ -7,9 +7,7 @@ public class Person
 	private char gender;
 	private Zodiac zodiacSign;
 	private Zodiac addictedSign;
-/*	private static final char MALE='M';
-	private static final char FEMALE='F';
-*/
+
 	private static final short THRESHOLD=5;
 	
 	public Person(){

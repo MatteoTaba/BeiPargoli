@@ -1,4 +1,4 @@
-package CuoriSolitari;
+package lanzi.tamagotchi;
 import java.util.*;
 
 public class Utility 
@@ -10,12 +10,14 @@ public class Utility
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
-		stringa=keyboard.next();
+		do{
+			stringa=keyboard.next();
+		}while(stringa.trim().equals(""));
 		
 		return stringa;
 	}
 	
-	public static String acquireStringNoEmpty(String inputText)
+	public static String acquireString(String inputText)
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
@@ -23,6 +25,25 @@ public class Utility
 			System.out.print(inputText);
 			stringa=keyboard.next();
 		}while(stringa.trim().equals(""));
+		
+		return stringa;
+	}
+	
+	public static String acquireStringAlsoEmpty()
+	{
+		String stringa;
+		keyboard.useDelimiter(NEWLINE);
+		stringa=keyboard.next();
+		
+		return stringa;
+	}
+	
+	public static String acquireStringAlsoEmpty(String inputText)
+	{
+		String stringa;
+		keyboard.useDelimiter(NEWLINE);
+		System.out.print(inputText);
+		stringa=keyboard.next();
 		
 		return stringa;
 	}
@@ -60,6 +81,44 @@ public class Utility
 		intero=keyboard.nextInt();
 		
 		return intero;
+	}
+	
+	public static int acquireIntPositive()
+	{
+		int interopos;
+		do{
+			interopos=keyboard.nextInt();
+		}while(interopos<=0);
+		
+		return interopos;
+	}
+	
+	public static int acquireIntPositive(String inputText)
+	{
+		int interopos;
+		do{
+			System.out.print(inputText);
+			interopos=keyboard.nextInt();
+		}while(interopos<=0);
+		
+		return interopos;
+	}
+	
+	public static float acquireFloat()
+	{
+		float floatNumber;
+		floatNumber=keyboard.nextFloat();
+		
+		return floatNumber;
+	}
+	
+	public static float acquireFloat(String inputText)
+	{
+		float floatNumber;
+		System.out.print(inputText);
+		floatNumber=keyboard.nextFloat();
+		
+		return floatNumber;
 	}
 	
 	//Specified inputs
