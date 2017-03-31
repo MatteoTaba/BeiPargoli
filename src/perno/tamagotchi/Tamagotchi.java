@@ -41,21 +41,24 @@ public class Tamagotchi {
 		int numeroCarezze = generator.nextInt(100);
 		
 		if(vivo && affetto != MAX_AFFETTO){
-			int affettoParziale;
-			float ciboParziale;
 			float ciboFloat = (float)cibo;
+			int affettoParziale=affetto;
+			float ciboParziale=ciboFloat;
+			
 			int i;
 			
-			for(i=numeroCarezze;i>0;i--){
+			for(i=numeroCarezze;i>0 && affettoParziale <= MAX_AFFETTO && ciboParziale >= 0 ;i--){
 				affettoParziale=affetto;
 				affettoParziale++;
 				ciboParziale=ciboFloat;
 				ciboParziale-=0.50;
 				
-				if(affettoParziale > MAX_AFFETTO) break;
-				if(ciboParziale < 0) break;
-				affetto=affettoParziale;
-				ciboFloat = ciboParziale;
+				if(affettoParziale <= MAX_AFFETTO){
+					if(ciboParziale >= 0){
+						affetto=affettoParziale;
+						ciboFloat = ciboParziale;
+					}
+				}
 			}
 			cibo=(int)ciboFloat;
 			numeroCarezze-=i;
@@ -78,23 +81,26 @@ public class Tamagotchi {
 		Random generator = new Random();
 		int numeroBiscotti = generator.nextInt(100);
 		
-		if(vivo && cibo != MAX_CIBO){
-			float ciboParziale;
-			float affettoParziale;
+		if(vivo){
 			float affettoFloat = (float)affetto;
 			float ciboFloat = (float)cibo;
+			float ciboParziale=ciboFloat;
+			float affettoParziale=affettoFloat;
+			
 			int i;
 			
-			for(i=numeroBiscotti;i>0;i--){
+			for(i=numeroBiscotti;i>0 && ciboParziale <= MAX_CIBO && affettoParziale >= 0;i--){
 				ciboParziale=ciboFloat;
 				ciboParziale+=ciboParziale*PERCENTUALE_BISCOTTI;
 				affettoParziale=affettoFloat;
 				affettoParziale-=0.25;
 				
-				if(ciboParziale > MAX_CIBO) break;
-				if(affettoParziale < 0) break;
-				ciboFloat=ciboParziale;
-				affettoFloat=affettoParziale;
+				if(ciboParziale <= MAX_CIBO){
+					if(affettoParziale >= 0){
+						ciboFloat=ciboParziale;
+						affettoFloat=affettoParziale;
+					}
+				}
 			}
 			
 			affetto=(int)affettoFloat;
