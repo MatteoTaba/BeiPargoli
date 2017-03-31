@@ -1,7 +1,8 @@
-package cuorisolitari;
+package gruppoA.util;
+
 import java.util.*;
 
-public class Utility 
+public class KeyboardInput 
 {
 	private static Scanner keyboard=new Scanner(System.in);
 	private static final String NEWLINE=System.getProperty("line.separator");
@@ -62,49 +63,21 @@ public class Utility
 		return intero;
 	}
 	
-	//Specified inputs
-	public static char acquireGender(String inputText)
+	public static float acquireFloat(String inputText)
 	{
-		char carattere;
-		do{
-			carattere=acquireChar(inputText);
-			carattere=Character.toUpperCase(carattere);
-		}while(carattere!='M' && carattere!='F');
+		int virgola;
+		System.out.print(inputText);
+		virgola=keyboard.nextInt();
 		
-		return carattere;
+		return virgola;
 	}
 	
-	public static int acquireAge(String inputText)
+	public static float acquireFloat()
 	{
-		int age;
-		do{
-			age=Utility.acquireInt(inputText);
-			if(age>120)
-				System.out.println("Eta' non plausibile");
-		}while(age>120);
+		int virgola;
+		virgola=keyboard.nextInt();
 		
-		return age;
-	}
-	
-	public static int acquireAge(String inputText, boolean requiredAdult)
-	{
-		int age;
-		if(requiredAdult)
-		{
-			do{
-				age=Utility.acquireInt(inputText);
-				if(age<18)
-					System.out.println("E' richiesto essere maggiorenni");
-				else if(age>120)
-					System.out.println("Eta' non plausibile");
-			}while(age<18 || age>120);
-			
-			return age;
-		}
-		else
-		{
-			return acquireAge(inputText);
-		}
+		return virgola;
 	}
 	
 }
