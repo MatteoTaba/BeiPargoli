@@ -9,18 +9,16 @@ public class Tamagotchi{
 	private static final float FULLPERCARESSLESS=SATISFACTIONPERCARESS/2;
 	
 	private static final float FULLPERBISCUITPERCENT=10;
-	//private static final float SATISFACTIONPERBISCUITPERCENTLESS=FULLPERBISCUITPERCENT/4;
 	
-	private static final String NEWLINE=System.getProperty("line.separator");
 	
 	public Tamagotchi(){
-		name="Nome";
+		name="Tamagotchi";
 		satisfactionGrade=50;
 		fullGrade=50;
 	}
 	
 	public Tamagotchi(int fullGrade,int satisfactionGrade){
-		name="Nome";
+		name="Tamagotchi";
 		this.fullGrade=fullGrade;
 		this.satisfactionGrade=satisfactionGrade;
 	}
@@ -44,20 +42,18 @@ public class Tamagotchi{
 		return name;
 	}
 	
-	public String getStats(){
-		if(!this.dead())
-			if(this.unhappy())
-				return "Grado sazieta' : "+this.fullGrade+NEWLINE+"Grado soddisfazione : "+this.satisfactionGrade+NEWLINE+this.name+" non e' contento";
-			else
-				return "Grado sazieta' : "+this.fullGrade+NEWLINE+"Grado soddisfazione : "+this.satisfactionGrade+NEWLINE+this.name+" e' contento";
-		else
-			return this.name+" e' morto.";
+	//Setters
+	public void setSatisfactionGrade(int satisfactionGrade){
+		this.satisfactionGrade=satisfactionGrade;
+	}
+	
+	public void setFullGrade(int fullGrade){
+		this.fullGrade=fullGrade;
 	}
 	
 	public void eatBiscuit(int quantity){
 		for(int i=0;i<quantity;i++){
 			fullGrade=Math.round(fullGrade+fullGrade*FULLPERBISCUITPERCENT/100);
-			//satisfactionGrade=satisfactionGrade-satisfactionGrade*SATISFACTIONPERBISCUITPERCENTLESS/100;
 		}
 		satisfactionGrade=Math.round(satisfactionGrade-(float)quantity/4);
 	}
