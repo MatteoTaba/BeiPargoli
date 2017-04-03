@@ -1,6 +1,5 @@
 package archivioCD;
 
-public class CDmain 
-{
+public class MyMenu {
 
 }

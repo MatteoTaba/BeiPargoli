@@ -1,13 +1,35 @@
 package gruppoA.util;
 
-import java.util.*;
+import java.util.Scanner;
 
-public class KeyboardInput 
-{
+public class KeyboardInput {
 	private static Scanner keyboard=new Scanner(System.in);
 	private static final String NEWLINE=System.getProperty("line.separator");
 	
 	public static String acquireString()
+	{
+		String stringa;
+		keyboard.useDelimiter(NEWLINE);
+		do{
+			stringa=keyboard.next();
+		}while(stringa.trim().equals(""));
+		
+		return stringa;
+	}
+	
+	public static String acquireString(String inputText)
+	{
+		String stringa;
+		keyboard.useDelimiter(NEWLINE);
+		do{
+			System.out.print(inputText);
+			stringa=keyboard.next();
+		}while(stringa.trim().equals(""));
+		
+		return stringa;
+	}
+	
+	public static String acquireStringAlsoEmpty()
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
@@ -16,14 +38,12 @@ public class KeyboardInput
 		return stringa;
 	}
 	
-	public static String acquireStringNoEmpty(String inputText)
+	public static String acquireStringAlsoEmpty(String inputText)
 	{
 		String stringa;
 		keyboard.useDelimiter(NEWLINE);
-		do{
-			System.out.print(inputText);
-			stringa=keyboard.next();
-		}while(stringa.trim().equals(""));
+		System.out.print(inputText);
+		stringa=keyboard.next();
 		
 		return stringa;
 	}
@@ -63,21 +83,105 @@ public class KeyboardInput
 		return intero;
 	}
 	
-	public static float acquireFloat(String inputText)
-	{
-		int virgola;
-		System.out.print(inputText);
-		virgola=keyboard.nextInt();
+	public static int acquireInt(int from, int to){
+		int intero;
+		do{
+			intero=keyboard.nextInt();
+		}while(intero < from || intero > to);
 		
-		return virgola;
+		return intero;
+	}
+	
+	public static int acquireInt(int from, int to, String inputText){
+		int intero;
+		do{
+			System.out.print(inputText);
+			intero=keyboard.nextInt();
+		}while(intero < from || intero > to);
+		
+		return intero;
+	}
+
+	public static int acquireIntPositive()
+	{
+		int interopos;
+		do{
+			interopos=keyboard.nextInt();
+		}while(interopos<=0);
+		
+		return interopos;
+	}
+
+	public static int acquireIntPositive(String inputText)
+	{
+		int interopos;
+		do{
+			System.out.print(inputText);
+			interopos=keyboard.nextInt();
+		}while(interopos<=0);
+		
+		return interopos;
 	}
 	
 	public static float acquireFloat()
 	{
-		int virgola;
-		virgola=keyboard.nextInt();
+		float floatNumber;
+		floatNumber=keyboard.nextFloat();
 		
-		return virgola;
+		return floatNumber;
 	}
 	
+	public static float acquireFloat(String inputText)
+	{
+		float floatNumber;
+		System.out.print(inputText);
+		floatNumber=keyboard.nextFloat();
+		
+		return floatNumber;
+	}
+	
+	//Specified inputs
+	public static char acquireGender(String inputText)
+	{
+		char carattere;
+		do{
+			carattere=acquireChar(inputText);
+			carattere=Character.toUpperCase(carattere);
+		}while(carattere!='M' && carattere!='F');
+		
+		return carattere;
+	}
+	
+	public static int acquireAge(String inputText)
+	{
+		int age;
+		do{
+			age=KeyboardInput.acquireInt(inputText);
+			if(age>120)
+				System.out.println("Eta' non plausibile");
+		}while(age>120);
+		
+		return age;
+	}
+	
+	public static int acquireAge(String inputText, boolean requiredAdult)
+	{
+		int age;
+		if(requiredAdult)
+		{
+			do{
+				age=KeyboardInput.acquireInt(inputText);
+				if(age<18)
+					System.out.println("E' richiesto essere maggiorenni");
+				else if(age>120)
+					System.out.println("Eta' non plausibile");
+			}while(age<18 || age>120);
+			
+			return age;
+		}
+		else
+		{
+			return acquireAge(inputText);
+		}
+	}
 }
