@@ -1,5 +1,7 @@
 package lanzi.tamagotchi;
 
+import myutil.MyInput;
+
 public class Main{
 	
 	private static final String NEWLINE=System.getProperty("line.separator");
@@ -40,9 +42,9 @@ public class Main{
 
 	
 	private static Tamagotchi createTamagotchi(){
-		int fullGrade=Utility.acquireIntPositive(MSG_INS_FULLGRADE);
-		int satisfactionGrade=Utility.acquireIntPositive(MSG_INS_SATISFACTIONGRADE);
-		String name=Utility.acquireStringAlsoEmpty(MSG_INS_NAME);
+		int fullGrade=MyInput.acquireIntPositive(MSG_INS_FULLGRADE);
+		int satisfactionGrade=MyInput.acquireIntPositive(MSG_INS_SATISFACTIONGRADE);
+		String name=MyInput.acquireStringAlsoEmpty(MSG_INS_NAME);
 		Tamagotchi tam;
 		if(name.trim().equals(""))
 			tam=new Tamagotchi(fullGrade, satisfactionGrade);
@@ -62,7 +64,7 @@ public class Main{
 	private static void sendCommand(Tamagotchi tamagotchi){
 		String in;
 		do{
-			in=Utility.acquireString(MSG_INS_COMMAND).trim();
+			in=MyInput.acquireString(MSG_INS_COMMAND).trim();
 		}while(!in.equalsIgnoreCase(CARESS) && !in.equalsIgnoreCase(BISCUIT) && !in.equals(SECRET_COMMAND));
 
 		int quantity=(int)(Math.random()*MAX_RAND)+1;
