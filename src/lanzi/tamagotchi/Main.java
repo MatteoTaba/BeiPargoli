@@ -22,6 +22,9 @@ public class Main{
 	private static final String CARESS="carezze";
 	private static final String SECRET_COMMAND="AVADA KEDAVRA";
 	
+	/*
+	 * Indica la quantità massima delle carezze/biscotti estratta
+	 */
 	private static final int MAX_RAND=5;
 	
 	public static void main(String args[]){
@@ -40,7 +43,9 @@ public class Main{
 		System.out.printf(MSG_DEAD, tam.getName());
 	}
 
-	
+	/*
+	 * Crea istanza della classe Tamagotchi
+	 */
 	private static Tamagotchi createTamagotchi(){
 		int fullGrade=KeyboardInput.acquireIntPositive(MSG_INS_FULLGRADE);
 		int satisfactionGrade=KeyboardInput.acquireIntPositive(MSG_INS_SATISFACTIONGRADE);
@@ -53,6 +58,9 @@ public class Main{
 		return tam;
 	}
 	
+	/*
+	 * Stampa statisciche del Tamagotchi
+	 */
 	private static void printStats(Tamagotchi tamagotchi){
 		System.out.printf(MSG_STATS, tamagotchi.getFullGrade(), tamagotchi.getSatisfactionGrade());
 		if(tamagotchi.unhappy())
