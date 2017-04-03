@@ -12,16 +12,13 @@ public class Main {
 	 * Richiede la creazione di un tamagotchi e in seguito permette di interagire con esso.
 	 */
 	public static void main(String[] args) {
-		int comando;
+		int comando=0;
 		
 		saluta();
 		
 		Tamagotchi t = creaTamagotchi();
-		do{
-			if(!t.isAlive()){
-				System.out.println(t.getNome() + " è morto.");
-				break;
-			}
+		
+		for(;comando!=3 && t.isAlive();){
 			if(t.isHappy())
 				System.out.println(t.getNome() + " è felice!");
 			else
@@ -38,8 +35,10 @@ public class Main {
 				break;
 			case 2: daiBiscotto(t);
 				break;
-			}			
-		}while(comando!=3);
+			}
+			if(!t.isAlive())
+				System.out.println(t.getNome() + " è morto.");
+		}
 		System.exit(0);
 	}
 	
