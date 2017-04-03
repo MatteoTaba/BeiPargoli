@@ -7,7 +7,7 @@ public class RandomNumbers {
 	
 	public static int randomInt(int from, int to){
 		int a;
-		if(from > to){//Inverte i valori
+		if(from > to){//It inverts the values
 			a=from;
 			from=to;
 			to=a;
