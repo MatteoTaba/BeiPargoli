@@ -15,6 +15,10 @@ public class Track
 		this.lenght=lenght;
 	}
 	
+	public String getTitle()
+	{
+		return title;
+	}
 	public String toString()
 	{
 		return "La traccia " + this.title + " ha durata " + this.lenght;

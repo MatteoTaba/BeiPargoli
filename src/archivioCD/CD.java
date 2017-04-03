@@ -9,7 +9,7 @@ public class CD
 	private String artist;
 	private Vector <Track> tracks= new Vector<Track>();
 	
-	public CD(String title, String artist, Vector tracks)
+	public CD(String title, String artist, Vector<Track> tracks)
 	{
 		this.title=title;
 		this.artist=artist;
@@ -20,13 +20,13 @@ public class CD
 	{
 		return title;
 	}
-	
+
 	public String getArtist()
 	{
 		return artist;
 	}
 	
-	public Vector getTracks()
+	public Vector<Track> getTracks()
 	{
 		return tracks;
 	}
@@ -45,14 +45,19 @@ public class CD
 	
 	public Track specificTrack(int trackNumber)
 	{
+		if(trackNumber<tracks.size())
+			return tracks.get(trackNumber);	
+		else
+			return null;
+	}
+	
+	public void showTracks()
+	{
 		for(int i=0;i<tracks.size();i++)
 		{
 			Track toPrint=tracks.get(i);
 			System.out.println(toPrint);
 		}
-		Track toFind=new Track();
-		=KeyboardInput.acquireString("Inserisci la traccia desiderata: ");
-		if()
 	}
 	
 	public String toString()
