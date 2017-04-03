@@ -1,6 +1,6 @@
 package perno.tamagotchi;
 
-import myutil.MyInput;
+import gruppoA.util.KeyboardInput;
 
 /*
  * Contiene il metodo main.
@@ -28,7 +28,7 @@ public class Main {
 			System.out.println("2-Dai biscotto");
 			System.out.println("3-Esci");
 			
-			comando = MyInput.acquireInt();
+			comando = KeyboardInput.acquireInt();
 			
 			switch (comando){
 			case 1: accarezza(t);
@@ -78,14 +78,14 @@ public class Main {
 		int affetto;
 		int cibo;
 		
-		nome=MyInput.acquireString("Nome:");
+		nome=KeyboardInput.acquireString("Nome:");
 		
 		do{
-			affetto=MyInput.acquireInt(0,100,"Affetto (0-100):");
+			affetto=KeyboardInput.acquireInt(0,100,"Affetto (0-100):");
 		}while(affetto < 0 || affetto > 100);
 		
 		do{
-			cibo=MyInput.acquireInt(0,100,"Cibo (0-100):");
+			cibo=KeyboardInput.acquireInt(0,100,"Cibo (0-100):");
 		}while(affetto < 0 || affetto > 100);
 		
 		t = new Tamagotchi(nome,affetto,cibo);

@@ -47,7 +47,7 @@ public class CDarchive {
 	}
 	
 	public CD randomCD(){
-		
+		return null;
 	}
 }
 

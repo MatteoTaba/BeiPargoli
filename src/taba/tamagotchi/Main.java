@@ -18,7 +18,7 @@ public class Main
 		float full;
 		
 		
-		name=KeyboardInput.acquireStringNoEmpty("Battezza il tuo animaletto: ");
+		name=KeyboardInput.acquireString("Battezza il tuo animaletto: ");
 		satisfaction=KeyboardInput.acquireFloat("Imposta il grado di soddisfazione iniziale: ");
 		full=KeyboardInput.acquireFloat("Imposta il grado di sazietà iniziale: ");
 		
@@ -40,7 +40,7 @@ public class Main
 				
 				do
 				{
-					command=KeyboardInput.acquireStringNoEmpty("Inserisci il comando[Carezze/Biscotti/Esci]: ");
+					command=KeyboardInput.acquireString("Inserisci il comando[Carezze/Biscotti/Esci]: ");
 							
 				}while(!command.equalsIgnoreCase("Biscotti") && !command.equalsIgnoreCase("Carezze") && !command.equalsIgnoreCase("Esci"));
 				
