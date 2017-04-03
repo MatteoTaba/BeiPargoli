@@ -1,6 +1,5 @@
 package archivioCD;
 
-import java.util.*;
 import gruppoA.util.*;
 
 public class MyMenu {
