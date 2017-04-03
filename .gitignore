@@ -1,5 +1,6 @@
-.drjava
+
 .metadata
+doc/
 bin/
 tmp/
 *.tmp
