@@ -2,6 +2,9 @@ package lanzi.tamagotchi;
 
 import gruppoA.util.KeyboardInput;
 
+/**
+ * Classe contentente il metodo Main.
+ */
 public class Main{
 	
 	private static final String NEWLINE=System.getProperty("line.separator");
@@ -22,8 +25,8 @@ public class Main{
 	private static final String CARESS="carezze";
 	private static final String SECRET_COMMAND="AVADA KEDAVRA";
 	
-	/*
-	 * Indica la quantità massima delle carezze/biscotti estratta
+	/**
+	 * Indica la quantità massima delle carezze/biscotti estratta casualmente.
 	 */
 	private static final int MAX_RAND=5;
 	
@@ -33,7 +36,7 @@ public class Main{
 		
 		Tamagotchi tam=createTamagotchi();
 		
-		//Tamagotchi running
+		//Esecuzione del Tamagotchi
 		while(!tam.dead()){
 			sendCommand(tam);
 			
@@ -43,8 +46,8 @@ public class Main{
 		System.out.printf(MSG_DEAD, tam.getName());
 	}
 
-	/*
-	 * Crea istanza della classe Tamagotchi
+	/**
+	 * Crea istanza della classe Tamagotchi.
 	 */
 	private static Tamagotchi createTamagotchi(){
 		int fullGrade=KeyboardInput.acquireIntPositive(MSG_INS_FULLGRADE);
@@ -58,8 +61,8 @@ public class Main{
 		return tam;
 	}
 	
-	/*
-	 * Stampa statisciche del Tamagotchi
+	/**
+	 * Stampa statisciche del Tamagotchi.
 	 */
 	private static void printStats(Tamagotchi tamagotchi){
 		System.out.printf(MSG_STATS, tamagotchi.getFullGrade(), tamagotchi.getSatisfactionGrade());
@@ -69,6 +72,9 @@ public class Main{
 			System.out.printf(MSG_HAPPY, tamagotchi.getName());
 	}
 	
+	/**
+	 * Richiede comando da inviare al Tamagotchi.
+	 */
 	private static void sendCommand(Tamagotchi tamagotchi){
 		String in;
 		do{
