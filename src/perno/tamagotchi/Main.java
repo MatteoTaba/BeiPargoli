@@ -1,6 +1,6 @@
 package perno.tamagotchi;
 
-import gruppoA.util.KeyboardInput;
+import gruppoA.util.*;
 
 /*
  * Contiene il metodo main.
@@ -55,7 +55,7 @@ public class Main {
 	private static void accarezza(Tamagotchi t){
 		int carezzeEffettive;
 		
-		carezzeEffettive=t.carezza();
+		carezzeEffettive=t.riceviCarezze(RandomNumbers.randomInt(0, 100));//TODO Definire ostanti
 		System.out.println("Carezze effettive:"+ carezzeEffettive+" | " + t.toString());
 	}
 	
@@ -65,7 +65,7 @@ public class Main {
 	private static void daiBiscotto(Tamagotchi t){
 		int biscottiEffettivi;
 		
-		biscottiEffettivi=t.biscotto();
+		biscottiEffettivi=t.riceviBiscotti(RandomNumbers.randomInt(0, 100));//TODO Definire costanti
 		System.out.println("Biscotti effettivi:"+ biscottiEffettivi+" | " + t.toString());
 	}
 	
