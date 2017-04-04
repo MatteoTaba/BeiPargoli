@@ -9,27 +9,34 @@ public class CDmain {
 	private static final int MENU_PRIMARY=1;
 	private static final int MENU_ARCHIVE=2;
 	private static final int MENU_CD=3;
-	private static int menuState=MENU_PRIMARY;
+	
 	
 	public static void main(String args[]){
 		int choose=1;
 		
-		MyMenu menuPrimary=new MyMenu("Titolo", MENU_PRIMARY_CHOISE);
-		MyMenu menuArchive=new MyMenu("Titolo", MENU_ARCHIVE_CHOISE);
-		MyMenu menuCd=new MyMenu("Titolo", MENU_CD_CHOISE);
+		MyMenu menuPrimary=new MyMenu("Libreria Musicale", MENU_PRIMARY_CHOISE);
+		MyMenu menuArchive=new MyMenu("Gestisci Archivio", MENU_ARCHIVE_CHOISE);
+		MyMenu menuCd=new MyMenu("Gestisci CD", MENU_CD_CHOISE);
 		
-		while(choose!=0 && menuState==MENU_PRIMARY)
+		int menuState=MENU_PRIMARY;
+		
+		exit:
+		while(true)
 		{
 			switch(menuState)
 			{
 				case MENU_PRIMARY:
-					menuPrimary.selectChoice();
+					choose=menuPrimary.selectChoice();
+					if(choose==0)
+						break exit;
+					menuState=menuPrimaryInput(choose);
 					break;
 				case MENU_ARCHIVE:
-					menuArchive.selectChoice();
+					choose=menuArchive.selectChoice();
+					menuState=menuArchiveInput(choose);
 					break;
 				case MENU_CD:
-					menuCd.selectChoice();
+					choose=menuCd.selectChoice();
 					break;
 			}
 			//call method to manage input (parameter int choise)
@@ -37,6 +44,42 @@ public class CDmain {
 		
 	}
 	
-	//TODO method to manage input
+	/**
+	 * Manage Primary menu input.
+	 * @return menuState:Menu to display next.
+	 */
+	private static int menuPrimaryInput(int choose){
+		switch(choose)
+		{
+			case 1:
+				return MENU_ARCHIVE;
+			case 2:
+				return MENU_CD;
+				
+			default:
+				return MENU_PRIMARY;
+		}
+	}
+	
+	/**
+	 * Manage Archive menu input.
+	 * @return menuState:Menu to display next.
+	 */
+	private static int menuArchiveInput(int choose){
+		switch(choose)
+		{
+			case 0:
+				return MENU_PRIMARY;
+			case 1:
+				//TODO something
+				return MENU_ARCHIVE;
+
+			//TODO implement cases
+				
+			default:
+				return MENU_PRIMARY;
+		}
+	}
+	//TODO methods to manage input (one for each menu)
 	
 }

@@ -7,6 +7,7 @@ public class MyMenu {
 	private String choises[];
   
 	private static final String MSG_INS_CHOICE="Scelta : ";
+	private static final String MSG_SEPARATOR="-------------------------";
   
 	public MyMenu(String title, String[] choises){
 		this.title=title;
@@ -14,7 +15,9 @@ public class MyMenu {
 	}
   
 	public void showMenu(){
-		System.out.println(title);
+		System.out.println(MSG_SEPARATOR);
+		System.out.println("\t"+title);
+		System.out.println(MSG_SEPARATOR);
 		int i=0;
 		for(String choice : choises)
 		{
@@ -28,6 +31,8 @@ public class MyMenu {
 		showMenu();
 		int from=0;
 		int to=choises.length-1;
-		return KeyboardInput.acquireInt(from, to, MSG_INS_CHOICE);
+		int acquiredInt=KeyboardInput.acquireInt(from, to, MSG_INS_CHOICE);
+		System.out.println(MSG_SEPARATOR);
+		return acquiredInt;
 	}
 }
