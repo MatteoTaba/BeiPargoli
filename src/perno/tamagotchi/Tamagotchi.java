@@ -1,6 +1,6 @@
 package perno.tamagotchi;
 
-/*
+/**
  * Rappresenta un tamagotchi.
  */
 public class Tamagotchi {
@@ -17,7 +17,7 @@ public class Tamagotchi {
 	private static final int SOGLIA_INF_CIBO=30;
 	private static final int SOGLIA_SUP_CIBO=90;
 	
-	/*
+	/**
 	 * Costruttore che istanzia un nuovo tamagotchi.
 	 * @param nome Nome del tamagotchi.
 	 * @param affetto Valore iniziale affetto.
@@ -31,12 +31,13 @@ public class Tamagotchi {
 		isAlive();
 	}
 	
-	/*
+	/**
 	 * Metodo che va a incrementare l'affetto di 1 per ogni carezza e decrementare il cibo di metà delle carezze ricevute.
 	 * Non vengono effettuate ulteriori carezze se il tamagotchi è morto/muore o ha/raggiunge affetto massimo.
 	 * @param numeroCarezze Numero di carezze da effettuare.
 	 * @return Numero di carezze effettivamente date.
-	 * TODO implementare riduzione aumento affetto per un numero elevato di carezze
+	 */
+	/* TODO implementare riduzione aumento affetto per un numero elevato di carezze
 	 * I conti vengono eseguiti su variabili float e alla fine convertiti in int arrotondando.
 	 */
 	public int riceviCarezze(int numeroCarezze){		
@@ -75,11 +76,13 @@ public class Tamagotchi {
 		return numeroCarezze;
 	}
 	
-	/*
+	/**
 	 * Metodo che va a incrementare il cibo di 1 per ogni biscotto e decrementare l'affetto di 1/4 dei biscotti ricevuti.
 	 * Non vengono dati ulteriori biscotti se il tamagotchi è morto/muore o ha/raggiunge cibo massimo.
 	 * @param numeroCarezze Numero di biscotti da dare.
 	 * @return Numero di biscotti effettivamente dati.
+	 */
+	/*
 	 * TODO implementare riduzione aumento cibo per un numero elevato di biscotti
 	 * I conti vengono eseguiti su variabili float e alla fine convertiti in int arrotondando.
 	 */
@@ -122,7 +125,7 @@ public class Tamagotchi {
 		return numeroBiscotti;
 	}
 	
-	/*
+	/**
 	 * Controlla se il tamagotchi è vivo.
 	 * @return Vero se vivo, falso se morto.
 	 */
@@ -133,7 +136,7 @@ public class Tamagotchi {
 		return vivo;
 	}
 	
-	/*
+	/**
 	 * Controlla se il tamagotchi è felice.
 	 * @return Vero se felice, falso se è triste.
 	 */
@@ -146,28 +149,28 @@ public class Tamagotchi {
 		return happy;
 	}
 	
-	/*
+	/**
 	 * @return Valore attuale di affetto del tamagotchi.
 	 */
 	public int getAffetto() {
 		return affetto;
 	}
 	
-	/*
+	/**
 	 * @return Valore attuale di cibo del tamagotchi.
 	 */
 	public int getCibo() {
 		return cibo;
 	}
 	
-	/*
+	/**
 	 * @return Nome del tamagotchi.
 	 */
 	public String getNome() {
 		return nome;
 	}
 	
-	/*
+	/**
 	 * @return Breve descrizione dello stato del tamagotchi.
 	 */
 	public String toString(){
@@ -184,7 +187,7 @@ public class Tamagotchi {
 		return nome+ "- Affetto: "+affetto+"; Cibo: "+cibo+"; Stato: "+happy+", "+vivo;
 	}
 	
-	/*
+	/**
 	 * Metodi per adattare l'applicazione al test.
 	 */
 	public boolean sonoMorto(){

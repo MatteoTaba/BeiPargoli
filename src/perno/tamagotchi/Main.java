@@ -2,7 +2,7 @@ package perno.tamagotchi;
 
 import gruppoA.util.*;
 
-/*
+/**
  * Contiene il metodo main.
  */
 public class Main {
@@ -10,7 +10,7 @@ public class Main {
 	private static final int MIN_RANDOM = 0;
 	private static final int MAX_RANDOM = 100;
 	
-	/*
+	/**
 	 * Richiede la creazione di un tamagotchi e in seguito permette di interagire con esso.
 	 */
 	public static void main(String[] args) {
@@ -41,14 +41,14 @@ public class Main {
 		System.exit(0);
 	}
 	
-	/*
+	/**
 	 * Saluto iniziale all'utente.
 	 */
 	public static void saluta(){
 		System.out.println(SALUTO);
 	}
 	
-	/*
+	/**
 	 * Accarezza il tamagotchi selezionato un numero casuale di volte.
 	 * @param t Tamagotchi selezionato.
 	 */
@@ -59,7 +59,7 @@ public class Main {
 		System.out.println("Carezze effettive:"+ carezzeEffettive+" | " + t.toString());
 	}
 	
-	/*
+	/**
 	 * Da un numero casuale di biscotti al tamagotchi selezionato.
 	 * @param t Tamagotchi selezionato.
 	 */
@@ -70,7 +70,7 @@ public class Main {
 		System.out.println("Biscotti effettivi:"+ biscottiEffettivi+" | " + t.toString());
 	}
 	
-	/*
+	/**
 	 * Crea un nuovo tamagotchi.
 	 * @return Restituisce un oggetto tamagotchi con parametri ricevuti in input.
 	 */
@@ -88,7 +88,7 @@ public class Main {
 		return t;
 	}
 	
-	/*
+	/**
 	 * Stampa il menù iniziale
 	 * @return Restituisce il comando ricevuto in input.
 	 */
