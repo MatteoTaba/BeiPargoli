@@ -1,7 +1,5 @@
 package perno.tamagotchi;
 
-import java.util.Random;
-
 /*
  * Rappresenta un tamagotchi.
  */
@@ -36,10 +34,7 @@ public class Tamagotchi {
 	 * Non vengono effettuate ulteriori carezze se il tamagotchi è morto/muore o ha/raggiunge affetto massimo.
 	 * TODO implementare riduzione aumento affetto per un numero elevato di carezze
 	 */
-	public int carezza(){
-		Random generator = new Random();
-		int numeroCarezze = generator.nextInt(100);
-		
+	public int riceviCarezze(int numeroCarezze){		
 		if(vivo && affetto != MAX_AFFETTO){
 			float ciboFloat = (float)cibo;
 			int affettoParziale=affetto;
@@ -77,10 +72,7 @@ public class Tamagotchi {
 	 * Non vengono dati ulteriori biscotti se il tamagotchi è morto/muore o ha/raggiunge cibo massimo.
 	 * TODO implementare riduzione aumento cibo per un numero elevato di biscotti
 	 */
-	public int biscotto(){
-		Random generator = new Random();
-		int numeroBiscotti = generator.nextInt(100);
-		
+	public int riceviBiscotti(int numeroBiscotti){		
 		if(vivo){
 			float affettoFloat = (float)affetto;
 			float ciboFloat = (float)cibo;
@@ -161,5 +153,16 @@ public class Tamagotchi {
 		else
 			vivo="morto";
 		return nome+ "- Affetto: "+affetto+"; Cibo: "+cibo+"; Stato: "+happy+", "+vivo;
+	}
+	
+	/*
+	 * Modified names in order to test the application.
+	 */
+	public boolean sonoMorto(){
+		return !isAlive();
+	}
+	
+	public boolean sonoTriste(){
+		return !isHappy();
 	}
 }
