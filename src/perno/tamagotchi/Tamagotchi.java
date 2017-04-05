@@ -9,13 +9,18 @@ public class Tamagotchi {
 	private int cibo;
 	private boolean vivo;
 	private boolean happy;
+	private int benessere;
+	private int countHappy;
+	private int countSad;
 	
 	private static final int MAX_AFFETTO = 100;
 	private static final int MAX_CIBO = 100;
-	private static final float PERCENTUALE_BISCOTTI=(float)0.1;
+	//private static final float PERCENTUALE_BISCOTTI=(float)0.1;
 	private static final int SOGLIA_INF_AFFETTO=30;
 	private static final int SOGLIA_INF_CIBO=30;
 	private static final int SOGLIA_SUP_CIBO=90;
+	private static final int CALO_EFFETTI = 10;
+	private static final float PERCENTUALE_CALO_EFFETTI=(float)0.1;
 	
 	/**
 	 * Costruttore che istanzia un nuovo tamagotchi.
@@ -23,11 +28,22 @@ public class Tamagotchi {
 	 * @param affetto Valore iniziale affetto.
 	 * @param cibo Valore iniziale cibo.
 	 */
-	public Tamagotchi(String nome, int affetto, int cibo){//TODO Controllo valori.
+	public Tamagotchi(String nome, int affetto, int cibo){
 		this.nome=nome;
-		this.affetto = affetto;
-		this.cibo = cibo;
-		this.vivo = true;
+		
+		if(affetto >= 0 && affetto <= MAX_AFFETTO)
+			this.affetto = affetto;
+		else
+			throw new IllegalArgumentException();
+		
+		if(cibo >= 0 && cibo <= MAX_CIBO)
+			this.cibo = cibo;
+		else
+			throw new IllegalArgumentException();
+		
+		isHappy();
+		calcolaBenessere();
+		vivo = true;
 		isAlive();
 	}
 	
@@ -37,8 +53,9 @@ public class Tamagotchi {
 	 * @param numeroCarezze Numero di carezze da effettuare.
 	 * @return Numero di carezze effettivamente date.
 	 */
-	/* TODO implementare riduzione aumento affetto per un numero elevato di carezze
+	/* 
 	 * I conti vengono eseguiti su variabili float e alla fine convertiti in int arrotondando.
+	 * Dopo un certo numero di carezze l'incremento del livello di affetto cala dopo ogni carezza.
 	 */
 	public int riceviCarezze(int numeroCarezze){		
 		if(vivo && affetto != MAX_AFFETTO){
@@ -48,9 +65,12 @@ public class Tamagotchi {
 			
 			int i;
 			
+			int contaCarezze=0;
+			float incrementoAffetto=1;
+			
 			for(i=numeroCarezze;i>0 && affettoParziale <= MAX_AFFETTO && ciboParziale >= 0 ;i--){
 				affettoParziale=affetto;
-				affettoParziale++;
+				affettoParziale+=incrementoAffetto;
 				ciboParziale=ciboFloat;
 				ciboParziale-=0.50;
 				
@@ -58,12 +78,16 @@ public class Tamagotchi {
 					if(ciboParziale >= 0){
 						affetto=affettoParziale;
 						ciboFloat = ciboParziale;
+						contaCarezze++;
 					}
 					else
 						ciboFloat=0;
 				}
 				else
 					affetto=MAX_AFFETTO;
+				
+				if(contaCarezze >= CALO_EFFETTI)
+					incrementoAffetto=incrementoAffetto*PERCENTUALE_CALO_EFFETTI;
 			}
 			cibo=(int)Math.round(ciboFloat);
 			numeroCarezze-=i;
@@ -73,6 +97,7 @@ public class Tamagotchi {
 		
 		isAlive();
 		isHappy();
+		calcolaBenessere();
 		return numeroCarezze;
 	}
 	
@@ -85,6 +110,7 @@ public class Tamagotchi {
 	/*
 	 * TODO implementare riduzione aumento cibo per un numero elevato di biscotti
 	 * I conti vengono eseguiti su variabili float e alla fine convertiti in int arrotondando.
+	 * Dopo un certo numero di biscotti l'incremento del livello di cibo cala dopo ogni biscotto.
 	 */
 	public int riceviBiscotti(int numeroBiscotti){		
 		if(vivo){
@@ -95,9 +121,13 @@ public class Tamagotchi {
 			
 			int i;
 			
+			int contaBiscotti=0;
+			float incrementoCibo=1;
+			
 			for(i=numeroBiscotti;i>0 && ciboParziale <= MAX_CIBO && affettoParziale >= 0;i--){
 				ciboParziale=ciboFloat;
-				ciboParziale+=ciboParziale*PERCENTUALE_BISCOTTI;
+				//ciboParziale+=ciboParziale*PERCENTUALE_BISCOTTI;
+				ciboParziale+=incrementoCibo;
 				affettoParziale=affettoFloat;
 				affettoParziale-=0.25;
 				
@@ -105,12 +135,16 @@ public class Tamagotchi {
 					if(affettoParziale >= 0){
 						ciboFloat=ciboParziale;
 						affettoFloat=affettoParziale;
+						contaBiscotti++;
 					}
 					else
 						affettoFloat=0;
 				}
 				else
 					ciboFloat=MAX_CIBO;
+				
+				if(contaBiscotti >= CALO_EFFETTI)
+					incrementoCibo=incrementoCibo*PERCENTUALE_CALO_EFFETTI;
 			}
 			
 			affetto=(int)Math.round(affettoFloat);
@@ -122,6 +156,7 @@ public class Tamagotchi {
 		
 		isAlive();
 		isHappy();
+		calcolaBenessere();
 		return numeroBiscotti;
 	}
 	
@@ -143,9 +178,11 @@ public class Tamagotchi {
 	public boolean isHappy(){
 		if(affetto<SOGLIA_INF_AFFETTO || cibo < SOGLIA_INF_CIBO || SOGLIA_SUP_CIBO < cibo){
 			happy=false;
+			countSad++;
 		}
 		else
 			happy=true;
+			countHappy++;
 		return happy;
 	}
 	
@@ -171,6 +208,13 @@ public class Tamagotchi {
 	}
 	
 	/**
+	 * @return Stato di benessere del tamagotchi (1 triste, 100 felice).
+	 */
+	public int getBenessere() {
+		return benessere;
+	}
+	
+	/**
 	 * @return Breve descrizione dello stato del tamagotchi.
 	 */
 	public String toString(){
@@ -184,7 +228,14 @@ public class Tamagotchi {
 			vivo="vivo";
 		else
 			vivo="morto";
-		return nome+ "- Affetto: "+affetto+"; Cibo: "+cibo+"; Stato: "+happy+", "+vivo;
+		return nome+ "- Affetto: "+affetto+"; Cibo: "+cibo+"; Stato: "+happy+", "+vivo+"; Benessere: "+benessere+"/100.";
+	}
+	
+	/**
+	 * Calcola il valore di benessere come media pesata tra felice e triste.
+	 */
+	private void calcolaBenessere(){
+		this.benessere=(countSad+100*countHappy)/(countSad+countHappy);
 	}
 	
 	/**

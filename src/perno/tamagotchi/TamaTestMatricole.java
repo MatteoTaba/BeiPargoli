@@ -26,7 +26,7 @@ public class TamaTestMatricole
 		final Tamagotchi tama = new Tamagotchi("Kira", 50, 50);
 		assertFalse(tama.sonoMorto());
 	}
-/****	
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void cantInstantiatePetWithNegativeSatisfaction() throws Exception 
 	{
@@ -38,8 +38,7 @@ public class TamaTestMatricole
 	{
 		new Tamagotchi("Kira", 50, -10);
 	}
-	
-	*****/
+
 	@Test
 	public void petCanReceivePets() throws Exception 
 	{
