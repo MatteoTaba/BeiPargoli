@@ -39,7 +39,7 @@ public class CD
 	
 	public Track randomTrack() //scelta di una traccia casuale
 	{
-		int i= RandomNumbers.randomInt(0,30);
+		int i= RandomNumbers.randomInt(0,tracks.size()-1);
 		Track toPrint=tracks.get(i);
 		return toPrint;
 	}
@@ -74,7 +74,7 @@ public class CD
 	
 	public String toString() //descrizione cd
 	{
-		return "L'album " + this.getTitle() + " realizzato da " + this.getArtist();
+		return "CD : " + this.getTitle() + " \t Author : " + this.getArtist();
 	}
 	
 }

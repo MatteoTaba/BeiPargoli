@@ -6,9 +6,13 @@ import gruppoA.util.*;
 
 public class CDmain {
 
-	private static final String MSG_FOUND="%s trovato.";
-	private static final String MSG_NOT_FOUND="%s non trovato.";
-	private static final String MSG_ERR="Errore - %s";
+	private static final String NEWLINE=System.getProperty("line.separator");
+	private static final String MSG_FOUND="%s trovato"+NEWLINE;
+	private static final String MSG_NOT_FOUND="%s non trovato"+NEWLINE;
+	private static final String MSG_ERR="Errore - %s"+NEWLINE;
+	private static final String MSG_SEPARATOR="-----------------------------------";
+	private static final String MSG_INS_CD="Inserisci nuovo CD";
+	private static final String MSG_INS_TRACK="Inserisci nuovo brano";
 	private static final String MSG_INS_TITLE="Inserisci il titolo : ";
 	private static final String MSG_INS_TRACKLENGHT_MIN="Inserisci i minuti della traccia : ";
 	private static final String MSG_INS_TRACKLENGHT_SEC="Inserisci i secondi rimanenti della traccia : ";
@@ -55,9 +59,9 @@ public class CDmain {
 					break;
 				case MENU_CD:
 					choose=menuCd.selectChoice();
+					menuState=menuCdInput(choose);
 					break;
 			}
-			//call method to manage input (parameter int choise)
 		}
 		
 	}
@@ -98,14 +102,22 @@ public class CDmain {
 				title=KeyboardInput.acquireString(MSG_INS_TITLE);
 				cd=cdArchive.findCD(title);
 				if(cd==null)
+				{
 					System.out.printf(MSG_NOT_FOUND, "CD");
+					return MENU_ARCHIVE;
+				}
 				else
+				{
 					System.out.printf(MSG_FOUND, "CD");
-				return MENU_CD;
+					return MENU_CD;
+				}
 			//Ottieni CD random
 			case 3:
 				cd=cdArchive.randomCD();
-				return MENU_CD;
+				if(cd==null)
+					return MENU_ARCHIVE;
+				else
+					return MENU_CD;
 			//Inserisci CD
 			case 4:
 				CD cdCreated=createCD();
@@ -170,6 +182,9 @@ public class CDmain {
 	 */
 	private static CD createCD()
 	{
+		System.out.println(MSG_SEPARATOR);
+		System.out.println(MSG_INS_CD);
+		System.out.println(MSG_SEPARATOR);
 		String title=KeyboardInput.acquireString(MSG_INS_TITLE);
 		String artist=KeyboardInput.acquireString(MSG_INS_ARTIST);
 		Vector<Track> tracks=new Vector<Track>();
@@ -188,6 +203,9 @@ public class CDmain {
 	 */
 	private static Track createTrack()
 	{
+		System.out.println(MSG_SEPARATOR);
+		System.out.println(MSG_INS_TRACK);
+		System.out.println(MSG_SEPARATOR);
 		String title=KeyboardInput.acquireString(MSG_INS_TITLE);
 		int lenghtMin=KeyboardInput.acquireInt(MSG_INS_TRACKLENGHT_MIN);
 		int lenghtSec=KeyboardInput.acquireInt(MSG_INS_TRACKLENGHT_SEC);

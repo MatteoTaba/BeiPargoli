@@ -7,7 +7,7 @@ public class MyMenu {
 	private String choises[];
   
 	private static final String MSG_INS_CHOICE="Scelta : ";
-	private static final String MSG_SEPARATOR="-------------------------";
+	private static final String MSG_SEPARATOR="-----------------------------------";
   
 	public MyMenu(String title, String[] choises){
 		this.title=title;

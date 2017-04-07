@@ -21,10 +21,9 @@ public class CDarchive {
 	
 	public CD findCD(String title){
 		CD found=null;
-		int k=CDlist.size();
-		for(;k>=0;k--){
-			if(CDlist.get(k).getTitle().equals(title))
-				found=CDlist.get(k);
+		for(CD cd : CDlist){
+			if(cd.getTitle().equalsIgnoreCase(title))
+				found=cd;
 		}
 		return found;
 	}
