@@ -6,45 +6,45 @@ import gruppoA.util.*;
 
 public class CD 
 {
-	private String title;
-	private String artist;
-	private Vector <Track> tracks= new Vector<Track>();
+	private String title; //titolo del cd
+	private String artist; //artista del cd
+	private Vector <Track> tracks= new Vector<Track>(); //vector di tracce del cd
 	
-	public CD(String title, String artist, Vector<Track> tracks)
+	public CD(String title, String artist, Vector<Track> tracks) //costruttore
 	{
 		this.title=title;
 		this.artist=artist;
 		this.tracks=tracks;
 	}
 	
-	public String getTitle()
+	public String getTitle() //restituisce il titolo
 	{
 		return title;
 	}
 
-	public String getArtist()
+	public String getArtist() //restituisce l'artista
 	{
 		return artist;
 	}
 	
-	public Vector<Track> getTracks()
+	public Vector<Track> getTracks() //restituisce le tracce
 	{
 		return tracks;
 	}
 	
-	public void insertTrack(Track toInsert)
+	public void insertTrack(Track toInsert) //inserimento di una traccia
 	{
 		tracks.add(toInsert);
 	}
 	
-	public Track randomTrack()
+	public Track randomTrack() //scelta di una traccia casuale
 	{
 		int i= RandomNumbers.randomInt(0,30);
 		Track toPrint=tracks.get(i);
 		return toPrint;
 	}
 	
-	public Track specificTrack(int trackNumber)
+	public Track specificTrack(int trackNumber) //ricerca di una specifica traccia mediante il numero
 	{
 		if(trackNumber<tracks.size())
 			return tracks.get(trackNumber);	
@@ -52,7 +52,18 @@ public class CD
 			return null;
 	}
 	
-	public void showTracks()
+	public Track specificTrack(String trackTitle) //ricerca di una specifica traccia mediante titolo o parte di esso
+	{
+		for(Track i : tracks)
+		{
+			if(trackTitle.equals(i.getTitle()))
+			return i;	
+		}
+		
+		return null;
+	}
+	
+	public void showTracks() //visualizzazione di tutte le tracce di un cd
 	{
 		for(int i=0;i<tracks.size();i++)
 		{
@@ -61,7 +72,7 @@ public class CD
 		}
 	}
 	
-	public String toString()
+	public String toString() //descrizione cd
 	{
 		return "L'album " + this.getTitle() + " realizzato da " + this.getArtist();
 	}
