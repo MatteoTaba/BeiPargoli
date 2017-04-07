@@ -2,25 +2,37 @@ package archivioCD;
 
 public class Track 
 {
-	private String title;
-	private float lenght;
+	private String title; //titolo della traccia	
+	private int minutes; //minuti di durata della traccia
+	private int seconds; //secondi di durata della traccia
 	
-	public Track()
+	public Track() //costruttore vuoto
 	{
 
 	}
-	public Track(String title, float lenght)
+	public Track(String title, int minutes, int seconds) //costruttore con parametri
 	{
 		this.title=title;
-		this.lenght=lenght;
+		this.minutes=minutes;
 	}
 	
-	public String getTitle()
+	public String getTitle() //restituisce il titolo della traccia
 	{
 		return title;
 	}
-	public String toString()
+	
+	public int getMinutes() //restituisce i minuti della traccia
 	{
-		return "La traccia " + this.title + " ha durata " + this.lenght;
+		return minutes;
+	}
+	
+	public int getSeconds() //restituisce i secondi della traccia
+	{
+		return seconds;
+	}
+	
+	public String toString() //descrizione della traccia
+	{
+		return "La traccia " + this.title + " ha durata " + this.minutes + ":" + this.seconds;
 	}
 }
