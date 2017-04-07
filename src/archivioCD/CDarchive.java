@@ -38,10 +38,6 @@ public class CDarchive {
 		}
 	}
 	
-	public void deleteCD(CD toDelete){
-		
-	}
-	
 	public void deleteCD(String title){
 		
 	}

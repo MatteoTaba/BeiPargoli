@@ -1,6 +1,7 @@
 package archivioCD;
 
 import java.util.*;
+
 import gruppoA.util.*;
 
 public class CD 
@@ -56,13 +57,13 @@ public class CD
 		for(int i=0;i<tracks.size();i++)
 		{
 			Track toPrint=tracks.get(i);
-			System.out.println(toPrint);
+			System.out.println(i + " - " + toPrint);
 		}
 	}
 	
 	public String toString()
 	{
-		return "L'album " + this.getTitle() + " realizzato da " + this.getArtist() + " contiene le seguenti tracce " + this.getTracks();
+		return "L'album " + this.getTitle() + " realizzato da " + this.getArtist();
 	}
 	
 }

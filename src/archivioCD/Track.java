@@ -3,16 +3,18 @@ package archivioCD;
 public class Track 
 {
 	private String title;
-	private float lenght;
+	private int min;
+	private int sec;
 	
 	public Track()
 	{
 
 	}
-	public Track(String title, float lenght)
+	public Track(String title, int min, int sec)
 	{
 		this.title=title;
-		this.lenght=lenght;
+		this.min=min;
+		this.sec=sec;
 	}
 	
 	public String getTitle()
@@ -21,6 +23,6 @@ public class Track
 	}
 	public String toString()
 	{
-		return "La traccia " + this.title + " ha durata " + this.lenght;
+		return "La traccia " + this.title + " ha durata " + this.min + ":" + this.sec;
 	}
 }
